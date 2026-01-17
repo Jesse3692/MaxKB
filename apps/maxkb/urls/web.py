@@ -23,6 +23,7 @@ from django.views import static
 from rest_framework import status
 
 from chat.urls import urlpatterns as chat_urlpatterns
+from chat.views import CompletionsView, ChatCompletionsView
 from common.init.init_doc import init_doc
 from common.result import Result
 from maxkb import settings
@@ -34,6 +35,8 @@ admin_ui_prefix = CONFIG.get_admin_path()
 chat_api_prefix = CONFIG.get_chat_path()[1:] + '/api/'
 chat_ui_prefix = CONFIG.get_chat_path()
 urlpatterns = [
+    path('v1/completions', CompletionsView.as_view()),
+    path('v1/chat/completions', ChatCompletionsView.as_view()),
     path(admin_api_prefix, include("users.urls")),
     path(admin_api_prefix, include("tools.urls")),
     path(admin_api_prefix, include("models_provider.urls")),

@@ -42,7 +42,7 @@ def init_chat_doc(system_urlpatterns, chat_urlpatterns):
                  URLPattern(pattern=f'{chat_api_prefix}{str(url.pattern)}', callback=url.callback,
                             default_args=url.default_args,
                             name=url.name) for url in chat_urlpatterns if
-                 ['chat', 'open', 'profile'].__contains__(url.name)]),
+                 ['chat', 'open', 'profile', 'v1_completions', 'v1_chat_completions'].__contains__(url.name)]),
              name='chat_schema'),  # schema的配置文件的路由，下面两个ui也是根据这个配置文件来生成的
         path(f'{CONFIG.get_chat_path()[1:]}/api-doc/', ChatSpectacularSwaggerView.as_view(url_name='chat_schema'),
              name='swagger-ui'),  # swagger-ui的路由
